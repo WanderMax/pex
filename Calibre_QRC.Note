@@ -1,0 +1,16 @@
+QRC Flow
+
+1. Run Calibre LVS in "Generate Calibre Connectivity Interface data" mode on in "Outputs" - "SVDB Database"
+2. Copy Calibre query file "query_cmd" to LVS output folder
+3. Run Calibre query command: calibre -query svdb top_cell_name -query_input query_cmd
+4. Copy QRC command file "qrc.ccl" to LVS output folder and modify QRC techfile folder(with lvsfile/layer_setup/qrcTechFile/RCXdspfINIT/RCXspiceINIT) to "technology_directory"
+5. Run QRC command: qrc -cmd qrc.ccl
+
+
+
+
+
+query_cmd
+EXT:EXTinstall_directory/share/extraction/examples/query_cmd 
+Calibre:
+
