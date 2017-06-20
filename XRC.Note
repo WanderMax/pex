@@ -1,0 +1,53 @@
+#DEFINE XRC_RUN 
+Include "rules.R"
+Include "rules.C"
+
+//map layers to substrate(diff)
+PEX MAP diff psdnw psdnwh ptdpw ptdpsub ptdpwh ptdtpw
+PEX MAP diff ntdnw ntdnwh ntddnw nsdpw nsdpsub nsdpwh nsdtpw
+
+//gppoly_a --> poly gate, gppoly_i --> poly connect part
+PEX MAP gppoly gppoly_i gppoly_a
+
+//ignore capacitance between listed layers to substrate(diff)
+PEX IGNORE CAPACITANCE INTRINSIC ALL gppoly_a nsdpw psdnw psdnwh nsdpsub nsdtpw nsdpwh
+
+PEX IGNORE CAPACITANCE DEVICE gppoly_a nsdpw psdnw psdnw psdnwh nsdpsub nsdtpw nsdpwh
+
+//ignore capacitance between poly connect to connect via
+PEX IGNORE CAPACITANCE ALL gppoly_i VIA gppoly_i metal1
+
+//ignore capacitance between gppoly_a to substrate(diff)
+PEX IGNORE CAPACITANCE ALL gppoly_a nsdpw
+PEX IGNORE CAPACITANCE ALL gppoly_a nsdpwh
+PEX IGNORE CAPACITANCE ALL gppoly_a nsdpsub
+PEX IGNORE CAPACITANCE ALL gppoly_a nsdtpw
+PEX IGNORE CAPACITANCE ALL gppoly_a psdnw
+PEX IGNORE CAPACITANCE ALL gppoly_a psdnwh
+
+//ignore nearbody capacitance among substrate(diff) itself
+PEX IGNORE CAPACITANCE NEARBODY nsdpw
+PEX IGNORE CAPACITANCE NEARBODY nsdpwh
+PEX IGNORE CAPACITANCE NEARBODY nsdpsub
+PEX IGNORE CAPACITANCE NEARBODY nsdtpw
+PEX IGNORE CAPACITANCE NEARBODY psdnw
+PEX IGNORE CAPACITANCE NEARBODY psdnwh
+
+//ignore poly gate resistence
+PEX IGNORE RESISTANCE gppoly_a
+
+//ignore substrate(diff) resistence
+PEX IGNORE RESISTANCE nsdpw psdnw psdnwh nsdpsub nsdtpw nsdpwh
+
+//ignore substrate(diff) to M1 resistence
+PEX IGNORE RESISTANCE  VIA nsdpw metal1
+PEX IGNORE RESISTANCE  VIA nsdpwh metal1
+PEX IGNORE RESISTANCE  VIA nsdtpw metal1
+PEX IGNORE RESISTANCE  VIA nsdpsub metal1
+PEX IGNORE RESISTANCE  VIA psdnw metal1
+PEX IGNORE RESISTANCE  VIA psdnwh metal1
+
+
+CONNECT gppoly gppoly_i gppoly_a
+
+CAPACITANCE ORDER nsdpw psdnw  psdnwh nsdpsub nsdtpw nsdpwh gppoly metal1 metal2 metal3 alumpad 
