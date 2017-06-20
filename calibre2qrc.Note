@@ -1,0 +1,12 @@
+
+Run calibre2qrc to create the QRC lvsfile.
+calibre2qrc -r test.rul:lvsfile
+where:
+test.rul is the Calibre LVS rule file name in the current directory
+lvsfile is the output rule file in QRC format
+
+
+The Calibre LVS deck should be a SVRF format. Calibre2qrc can’t support a TVF format.
+calibre -E svrf_output_file tvf_input_file
+
+
