@@ -1,0 +1,22 @@
+QRC Flow
+
+1. Run Calibre LVS in "Generate Calibre Connectivity Interface data" mode on in "Outputs" - "SVDB Database"
+2. Copy Calibre query file "query_cmd" to LVS output folder
+3. Run Calibre query command: calibre -query svdb top_cell_name -query_input query_cmd
+4. Copy StarRC command file "starrc.star_cmd" to LVS output folder and modify star_cmd command file 
+6. Find--- DATABASE EXTENT = [ -19.109 , -1.12 ] -> [ 29.66 , 11.61 ] in LVS log, and modify the starrc.star_cmd
+5. Run StarRC command: StarXtract -clean starrc.star_cmd
+
+
+
+1. Run Calibre LVS in "Generate Calibre Connectivity Interface data" mode on in "Outputs" - "SVDB Database"
+2. Copy Calibre query file "query_cmd" to LVS output folder
+3. Run Calibre query command: calibre -query svdb top_cell_name -query_input query_cmd
+4. Copy StarRC command file "starrc.star_cmd" to LVS output folder and modify star_cmd command file 
+5. Run StarXtract -gui , load star_cmd command file , otherwise it will crash
+
+
+
+
+PS 
+query_cmd from Cadence EXT
